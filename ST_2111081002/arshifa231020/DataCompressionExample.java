@@ -13,7 +13,9 @@ import java.util.zip.GZIPOutputStream;
  *
  * @author WIN - 10
  */
+
 public class DataCompressionExample {
+
     public static byte[] compressData(byte[] data) throws Exception {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(outputStream)) {
