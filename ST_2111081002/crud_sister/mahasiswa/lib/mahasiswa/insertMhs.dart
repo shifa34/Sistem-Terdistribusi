@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+// import 'package:mahasiswa/mahasiswa/mahasiswa.dart';
 
 class InsertMhs extends StatefulWidget {              //Mendefinisikan kelas InsertMhs sebagai StatefulWidget, yang dapat berubah selama waktu runtime.
   const InsertMhs({super.key});                       //Konstruktor untuk kelas InsertMhs
@@ -36,7 +37,7 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
     }
   }
 
-  Future<void> insertMahasiswa() async {                        //Fungsi asinkron untuk menyimpan data mahasiswa ke server menggunakan HTTP POST request.
+  Future<void> InsertMhs() async {                        //Fungsi asinkron untuk menyimpan data mahasiswa ke server menggunakan HTTP POST request.
     String urlInsert = "http://192.168.56.1:9001/api/v1/mahasiswa";
     final Map<String, dynamic> data = {
       "nama": namaMhs,
@@ -51,13 +52,18 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
 
       if (response.statusCode == 200) {
         Navigator.pop(context, "berhasil");
+
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Mahasiswa()),
+        // );
       } else {
         print(response.statusCode);
       }
     } catch (e) {
       print(e);
     }
-  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +91,7 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
             ),
           ),
               TextField(
+                controller: nama,
                 decoration: InputDecoration(
                   labelText: "Nama",
                   hintText: "Masukkan Nama",
@@ -102,7 +109,7 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                controller: nama,
+                
               ),
               SizedBox(height: 15),
               TextField(
@@ -154,7 +161,7 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
                       namaMhs = nama.text;
                       emailMhs = email.text;
                     });
-                    insertMahasiswa();
+                    InsertMhs();
                   },
                   child: Text(
                     "SIMPAN",
