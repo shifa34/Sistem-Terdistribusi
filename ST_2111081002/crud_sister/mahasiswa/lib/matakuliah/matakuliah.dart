@@ -22,7 +22,7 @@ class _MatakuliahState extends State<Matakuliah> {
   }
 
   Future<void> allMatakuliah() async {
-    String urlMatakuliah = "http://192.168.56.1:9002/api/v1/matakuliah";
+    String urlMatakuliah = "http://10.0.2.2:9002/api/v1/matakuliah";
     try {
       var response = await http.get(Uri.parse(urlMatakuliah));
       listMatakuliah = jsonDecode(response.body);
@@ -35,7 +35,7 @@ class _MatakuliahState extends State<Matakuliah> {
   }
 
   Future<void> deleteMatakuliah(int id) async {
-    String urlMatakuliah = "http://192.168.56.1:9002/api/v1/matakuliah/${id}";
+    String urlMatakuliah = "http://10.0.2.2:9002/api/v1/matakuliah/${id}";
     try {
       await http.delete(Uri.parse(urlMatakuliah));
       setState(() {
@@ -67,19 +67,19 @@ class _MatakuliahState extends State<Matakuliah> {
                   margin: EdgeInsets.all(5),
                   child: ListTile(
                     leading: Icon(
-                      Icons.book_outlined,
-                      color: Colors.green.shade500,
+                      Icons.book,
+                      color: Colors.deepOrange.shade500,
                       size: 24,
                     ),
                     title: Text(
                       listMatakuliah[index]["kode"]?.toString() ?? "",
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.orange,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      "Nama : ${listMatakuliah[index]["nama"]?.toString() ?? ""}\nSKS : ${listMatakuliah[index]["sks"]?.toString() ?? ""}",
+                      "Matakuliah : ${listMatakuliah[index]["nama"]?.toString() ?? ""}\nSKS : ${listMatakuliah[index]["sks"]?.toString() ?? ""}",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 13,
