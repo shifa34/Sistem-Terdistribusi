@@ -28,10 +28,10 @@ class _InsertNilaiState extends State<InsertNilai> {
 
   Future<void> insertMatakuliah() async {
     if (isNumeric(nilai.text)) {
-      String urlInsert = "http://192.168.56.1:9003/api/v1/nilai";
+      String urlInsert = "http://10.0.2.2:9003/api/v1/nilai";
       final Map<String, dynamic> data = {
-        "idMahasiswa": idMahasiswa,
-        "idMatakuliah": idMatakuliah,
+        "mahasiswa_id": idMahasiswa,
+        "matakuliah_id": idMatakuliah,
         "nilai": int.parse(nilai.text)
       };
 
@@ -61,7 +61,7 @@ class _InsertNilaiState extends State<InsertNilai> {
   }
 
   Future<void> getMahasiswa() async {
-    String urlMahasiswa = "http://192.168.56.1:9001/api/v1/mahasiswa";
+    String urlMahasiswa = "http://10.0.2.2:9001/api/v1/mahasiswa";
     try {
       var response = await http.get(Uri.parse(urlMahasiswa));
       final List<dynamic> dataMhs = jsonDecode(response.body);
@@ -74,7 +74,7 @@ class _InsertNilaiState extends State<InsertNilai> {
   }
 
   Future<void> getMatakuliah() async {
-    String urlMatakuliah = "http://192.168.56.1:9002/api/v1/matakuliah";
+    String urlMatakuliah = "http://10.0.2.2:9002/api/v1/matakuliah";
     try {
       var response = await http.get(Uri.parse(urlMatakuliah));
       final List<dynamic> dataMk = jsonDecode(response.body);
@@ -95,14 +95,14 @@ class _InsertNilaiState extends State<InsertNilai> {
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
           width: 800,
           padding: EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(30, 40, 30, 40),
+                padding: EdgeInsets.fromLTRB(30, 10, 30, 40),
                 child: Text(
                 "Input Nilai Mahasiswa",
                 style: TextStyle(
