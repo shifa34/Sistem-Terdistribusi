@@ -26,7 +26,7 @@ class _NilaiMahasiswaState extends State<NilaiMahasiswa> {
   }
 
   Future<void> mahasiswaAll() async {
-    String urlAll = "http://192.168.56.1:9003/api/v1/nilai/$id";
+    String urlAll = "http://10.0.2.2:9003/api/v1/nilai/$id";
     try {
       var response = await http.get(Uri.parse(urlAll));
       List<dynamic> data = jsonDecode(response.body);
