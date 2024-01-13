@@ -42,7 +42,7 @@ class _UpdateMatkulState extends State<UpdateMatkul> {
   Future<void> UpdateMatkul() async {
     if (isNumeric(sks.text)) {
       String urlUpdate =
-          "http://192.168.56.1:9002/api/v1/matakuliah/${id}?kode=${kode.text}&&email=${nama.text}&&sks=${sks.text}";
+          "http://10.0.2.2:9002/api/v1/matakuliah/${id}?kode=${kode.text}&&nama=${nama.text}&&sks=${sks.text}";
       try {
         var response = await http.put(Uri.parse(urlUpdate));
 
