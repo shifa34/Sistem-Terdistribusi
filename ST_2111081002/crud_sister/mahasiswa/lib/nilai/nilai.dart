@@ -26,7 +26,7 @@ class _NilaiState extends State<Nilai> {
   }
 
   Future<void> getMahasiswa() async {
-    String urlMahasiswa = "http://192.168.56.1:9001/api/v1/mahasiswa";
+    String urlMahasiswa = "http://10.0.2.2:9001/api/v1/mahasiswa";
     try {
       var response = await http.get(Uri.parse(urlMahasiswa));
       final List<dynamic> dataMhs = jsonDecode(response.body);
@@ -39,7 +39,7 @@ class _NilaiState extends State<Nilai> {
   }
 
   Future<void> getMatakuliah() async {
-    String urlMatakuliah = "http://192.168.56.1:9002/api/v1/matakuliah";
+    String urlMatakuliah = "http://10.0.2.2:9002/api/v1/matakuliah";
     try {
       var response = await http.get(Uri.parse(urlMatakuliah));
       final List<dynamic> dataMk = jsonDecode(response.body);
@@ -52,7 +52,7 @@ class _NilaiState extends State<Nilai> {
   }
 
   Future<void> allNilai() async {
-    String urlNilai = "http://192.168.56.1:9003/api/v1/nilai";
+    String urlNilai = "http://10.0.2.2:9003/api/v1/nilai";
     try {
       var response = await http.get(Uri.parse(urlNilai));
       listNilai = jsonDecode(response.body);
@@ -65,7 +65,7 @@ class _NilaiState extends State<Nilai> {
   }
 
   Future<void> deleteNilai(int id) async {
-    String urlNilai = "http://192.168.56.1:9003/api/v1/nilai/${id}";
+    String urlNilai = "http://10.0.2.2:9003/api/v1/nilai/${id}";
     try {
       await http.delete(Uri.parse(urlNilai));
       setState(() {
@@ -96,19 +96,19 @@ class _NilaiState extends State<Nilai> {
                   margin: EdgeInsets.all(5),
                   child: ListTile(
                     leading: Icon(
-                      Icons.pin_outlined,
-                      color: Colors.green.shade500,
+                      Icons.library_books,
+                      color: Colors.deepOrange.shade500,
                       size: 24,
                     ),
                     title: Text(
-                      "${namaMahasiswa.firstWhere((mahasiswa) => mahasiswa["id"] == listNilai[index]["idMahasiswa"], orElse: () => {})["nama"] ?? ""}",
+                      "${namaMahasiswa.firstWhere((mahasiswa) => mahasiswa["id"] == listNilai[index]["mahasiswa_id"], orElse: () => {})["nama"] ?? ""}",
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.orange,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      "Matakuliah: ${namaMatakuliah.firstWhere((matakuliah) => matakuliah["id"] == listNilai[index]["idMatakuliah"], orElse: () => {})["nama"] ?? ""}\nNilai: ${listNilai[index]["nilai"]}",
+                      "Matakuliah: ${namaMatakuliah.firstWhere((matakuliah) => matakuliah["id"] == listNilai[index]["matakuliah_id"], orElse: () => {})["nama"] ?? ""}\nNilai: ${listNilai[index]["nilai"]}",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 13,
@@ -135,8 +135,8 @@ class _NilaiState extends State<Nilai> {
                                       MaterialPageRoute(
                                           builder: (context) => UpdateNilai(
                                               listNilai[index]["id"],
-                                              listNilai[index]["idMahasiswa"],
-                                              listNilai[index]["idMatakuliah"],
+                                              listNilai[index]["mahasiswa_id"],
+                                              listNilai[index]["matakuliah_id"],
                                               listNilai[index]["nilai"])))
                                   .then((value) => allNilai());
                             },
