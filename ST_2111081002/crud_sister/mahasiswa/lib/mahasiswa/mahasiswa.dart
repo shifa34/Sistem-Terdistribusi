@@ -23,20 +23,25 @@ class _MahasiswaState extends State<Mahasiswa> {
   }
 
   Future<void> allMahasiswa() async {
-    String urlMahasiswa = "http://192.168.56.1:9001/api/v1/mahasiswa";
+    String urlMahasiswa = "http://10.0.2.2:9001/api/v1/mahasiswa";
     try {
       var response = await http.get(Uri.parse(urlMahasiswa));
+      print("Status Code: ${response.statusCode}");
+      print("Response Body: ${response.body}");
+
       listMahasiswa = jsonDecode(response.body);
       setState(() {
         listMahasiswa = jsonDecode(response.body);
-      });
+      }
+      
+      );
     } catch (exc) {
       print(exc);
     }
   }
 
   Future<void> deleteMahasiwa(int id) async {
-    String urlMahasiswa = "http://192.168.56.1:9001/api/v1/mahasiswa/${id}";
+    String urlMahasiswa = "http://10.0.2.2:9001/api/v1/mahasiswa/${id}";
     try {
       await http.delete(Uri.parse(urlMahasiswa));
       setState(() {
@@ -68,14 +73,14 @@ class _MahasiswaState extends State<Mahasiswa> {
                   margin: EdgeInsets.all(5),
                   child: ListTile(
                     leading: Icon(
-                      Icons.person_pin_rounded,
-                      color: Colors.green.shade500,
+                      Icons.people,
+                      color: Colors.deepOrange.shade500,
                       size: 24,
                     ),
                     title: Text(
                       listMahasiswa[index]["nama"]?.toString() ?? "",
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.orange,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
@@ -100,7 +105,7 @@ class _MahasiswaState extends State<Mahasiswa> {
                           },
                           icon: Icon(
                             Icons.grade,
-                            color: Colors.blue.shade300,
+                            color: Colors.amber,
                             size: 24,
                           ),
                         ),
@@ -111,7 +116,7 @@ class _MahasiswaState extends State<Mahasiswa> {
                           },
                           icon: Icon(
                             Icons.delete,
-                            color: Colors.red.shade300,
+                            color: Colors.deepOrange.shade800,
                             size: 24,
                           ),
                         ),
@@ -130,7 +135,7 @@ class _MahasiswaState extends State<Mahasiswa> {
                           },
                           icon: Icon(
                             Icons.edit,
-                            color: Colors.yellow.shade800,
+                            color: Colors.deepOrange.shade300,
                             size: 24,
                           ),
                         ),
