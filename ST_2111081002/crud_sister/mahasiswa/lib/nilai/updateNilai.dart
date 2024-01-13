@@ -49,7 +49,7 @@ class _UpdateNilaiState extends State<UpdateNilai> {
   Future<void> updateNilai() async {
     if (isNumeric(nilai.text)) {
       String urlUpdate =
-          "http://192.168.56.1:9003/api/v1/nilai/${id}?idMahasiswa=${idMahasiswa}&idMatakuliah=${idMatakuliah}&nilai=${nilai.text}";
+        "http://10.0.2.2:9003/api/v1/nilai/${id}?idMahasiswa=${idMahasiswa}&idMatakuliah=${idMatakuliah}&nilai=${nilai.text}";
 
       try {
         var response = await http.put(Uri.parse(urlUpdate));
@@ -68,7 +68,7 @@ class _UpdateNilaiState extends State<UpdateNilai> {
   }
 
   Future<void> getMahasiswa() async {
-    String urlMahasiswa = "http://192.168.56.1:9001/api/v1/mahasiswa";
+    String urlMahasiswa = "http://10.0.2.2:9001/api/v1/mahasiswa";
     try {
       var response = await http.get(Uri.parse(urlMahasiswa));
       final List<dynamic> dataMhs = jsonDecode(response.body);
@@ -81,7 +81,7 @@ class _UpdateNilaiState extends State<UpdateNilai> {
   }
 
   Future<void> getMatakuliah() async {
-    String urlMatakuliah = "http://192.168.56.1:9002/api/v1/matakuliah";
+    String urlMatakuliah = "http://10.0.2.2:9002/api/v1/matakuliah";
     try {
       var response = await http.get(Uri.parse(urlMatakuliah));
       final List<dynamic> dataMk = jsonDecode(response.body);
