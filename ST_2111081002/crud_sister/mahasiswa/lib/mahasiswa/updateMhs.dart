@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mahasiswa/mahasiswa/mahasiswa.dart';
 
 // ignore: must_be_immutable
 class UpdateMhs extends StatefulWidget {
@@ -46,7 +47,7 @@ class _UpdateMhsState extends State<UpdateMhs> {
 
   Future<void> UpdateMhs() async {
     String urlInsert =
-        "http://192.168.56.1:9001/api/v1/mahasiswa/${id}?nama=${nama.text}&&email=${email.text}&&tglLahir=${"${tglLahir.toLocal()}".split(" ")[0]}";
+        "http://10.0.2.2:9001/api/v1/mahasiswa/${id}?nama=${nama.text}&&email=${email.text}&&tglLahir=${"${tglLahir.toLocal()}".split(" ")[0]}";
 
     try {
       var response = await http.put(
@@ -55,6 +56,11 @@ class _UpdateMhsState extends State<UpdateMhs> {
 
       if (response.statusCode == 200) {
         Navigator.pop(context);
+
+         Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Mahasiswa()),
+      );
       } else {
         print(response.statusCode);
       }
