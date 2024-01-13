@@ -38,7 +38,7 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
   }
 
   Future<void> InsertMhs() async {                        //Fungsi asinkron untuk menyimpan data mahasiswa ke server menggunakan HTTP POST request.
-    String urlInsert = "http://192.168.56.1:9001/api/v1/mahasiswa";
+    String urlInsert = "http://10.0.2.2:9001/api/v1/mahasiswa";
     final Map<String, dynamic> data = {
       "nama": namaMhs,
       "email": emailMhs,
@@ -74,14 +74,14 @@ class _InsertMhsState extends State<InsertMhs> {      //huk
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
           width: 800,
           padding: EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(30, 40, 30, 40),
+                padding: EdgeInsets.fromLTRB(30, 10, 30, 40),
                 child: Text(
                 "Input Data Mahasiswa",
                 style: TextStyle(
