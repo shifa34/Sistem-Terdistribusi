@@ -26,7 +26,7 @@ class _InsertMatkulState extends State<InsertMatkul> {
 
   Future<void> insertMatakuliah() async {
     if (isNumeric(sks.text)) {
-      String urlInsert = "http://192.168.56.1:9002/api/v1/matakuliah";
+      String urlInsert = "http://10.0.2.2:9002/api/v1/matakuliah";
       final Map<String, dynamic> data = {
         "kode": kode.text,
         "nama": nama.text,
@@ -60,14 +60,14 @@ class _InsertMatkulState extends State<InsertMatkul> {
       ),
       body: Center(
         child: Container(
-          margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
           width: 800,
           padding: EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(30, 40, 30, 40),
+                padding: EdgeInsets.fromLTRB(30, 10, 30, 40),
                 child: Text(
                 "Input Data Matakuliah",
                 style: TextStyle(
